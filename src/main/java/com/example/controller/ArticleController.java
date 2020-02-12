@@ -27,11 +27,17 @@ public class ArticleController {
 	}
 	
 	@RequestMapping("receive-form")
-//	public String receiveForm(String name,String content,Model model) {
-	public String receiveForm(ArticleForm form,Model model) {
+	public String receiveForm(ArticleForm form) {
 		Article article = new Article(); 
 		BeanUtils.copyProperties(form, article);
 		articleRepository.insert(article);
+		return "redirect:/article/toIndex";
+	}
+//■質問
+//	receiveForm()でredirecしてますが、
+//	toIndex()の方でModelを引数にしても大丈夫なのかどうか
+	@RequestMapping("/toIndex")
+	public String toIndex(Model model) {
 		return index(model);
 	}
 }
