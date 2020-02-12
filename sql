@@ -6,7 +6,7 @@ content text NOT NULL, --コンテント
 
 CONSTRAINT articles_pkey PRIMARY KEY (id)
 
-
+ーーーーーーーーーーーーーーーーーーーーーーーーー
 CREATE TABLE comments
 
 id serial NOT NULL, --コメントID

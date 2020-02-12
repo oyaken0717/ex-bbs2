@@ -1,4 +1,4 @@
-package com.example.controller.form;
+package com.example.form;
 
 public class ArticleForm {
 	
