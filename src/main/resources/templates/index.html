@@ -6,7 +6,7 @@
 </head>
 <body>
 	<h1>掲示板アプリケーション</h1>
-	<form th:action="@{/board/receive-form}" method="post" th:object="${boardForm}">
+	<form th:action="@{/article/receive-form}" method="post" th:object="${boardForm}">
 		投稿者名：<input type="text" name="articleName"><br>
 		投稿内容：<textarea name="articleContent"></textarea><br>
 		<button type="submit">記事投稿</button>
