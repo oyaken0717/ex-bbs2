@@ -5,6 +5,7 @@ public class Article {
 	private Integer id;
 	private String name;
 	private String content;
+	
 	public Integer getId() {
 		return id;
 	}

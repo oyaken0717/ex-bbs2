@@ -10,11 +10,14 @@ public class ArticleController {
 
 	@RequestMapping("")
 	public String index() {
+		
 		return "index";
 	}
 	
 	@RequestMapping("receive-form")
-	public String receiveForm(Model model) {
+	public String receiveForm(String name,String content,Model model) {
+		model.addAttribute("name",name);
+		model.addAttribute("content",content);
 		return "result";
 	}
 }
