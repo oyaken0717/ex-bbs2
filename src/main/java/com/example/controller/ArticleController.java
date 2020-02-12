@@ -26,8 +26,7 @@ public class ArticleController {
 	
 	@RequestMapping("receive-form")
 	public String receiveForm(String name,String content,Model model) {
-		model.addAttribute("name",name);
-		model.addAttribute("content",content);
+		
 		return "result";
 	}
 }
