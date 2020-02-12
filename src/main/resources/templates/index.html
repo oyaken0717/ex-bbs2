@@ -15,11 +15,19 @@
 	<hr>
 	
 	<div th:unless="${articleList==null}">
+	
 		<div th:each="article:${articleList}">
 			<div>投稿ID:<span th:text="${article.id}"></span></div>
 			<div>投稿者名:<span th:text="${article.name}"></span></div>
 			<div>投稿内容:<span th:text="${article.content}"></span></div><br>
+			
+			<div th:each="comment:${article.commentList}">
+				<div>コメントID:<span th:text="${comment.id}"></span></div>
+				<div>コメント者名<span th:text="${comment.name}"></span></div>
+				<div>コメント内容<span th:text="${comment.content}"></span></div><br>
+			</div>
 		</div>
+		
 	</div>
 </body>
 </html>

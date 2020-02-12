@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.domain.Article;
 import com.example.form.ArticleForm;
 import com.example.repository.ArticleRepository;
+import com.example.repository.CommentRepository;
 
 @Controller
 @RequestMapping("/article")
@@ -34,7 +35,7 @@ public class ArticleController {
 		return "redirect:/article/toIndex";
 	}
 //■質問
-//	receiveForm()でredirecしてますが、
+//	receiveForm()でredirectしてますが、
 //	toIndex()の方でModelを引数にしても大丈夫なのかどうか
 	@RequestMapping("/toIndex")
 	public String toIndex(Model model) {

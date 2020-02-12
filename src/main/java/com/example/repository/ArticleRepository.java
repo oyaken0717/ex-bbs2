@@ -10,9 +10,14 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import com.example.domain.Article;
+import com.example.domain.Comment;
 
 @Repository
 public class ArticleRepository {
+	
+	@Autowired
+	private CommentRepository commentRepository;
+	
 	
 	@Autowired
 	private NamedParameterJdbcTemplate template;
@@ -22,6 +27,7 @@ public class ArticleRepository {
 		article.setId(rs.getInt("id"));
 		article.setName(rs.getString("name"));
 		article.setContent(rs.getString("content"));
+//		article.setCommentList(rs.getString("c.content"));
 		return article;
 		
 	};
@@ -29,8 +35,20 @@ public class ArticleRepository {
 	public List<Article> findAll() {
 		String sql ="SELECT id, name, content FROM articles ORDER BY id DESC";
 		List<Article> articleList = template.query(sql, ARTICLE_ROW_MAPPER);
+		for (Article article : articleList) {
+			List<Comment> commentList = commentRepository.findByArticleId(article.getId());
+			article.setCommentList(commentList);
+		}
+		
 		return articleList;
 	}
+
+//	public List<Article> findAll() {
+//		String sql ="SELECT id, name, content FROM articles ORDER BY id DESC";
+//		List<Article> articleList = template.query(sql, ARTICLE_ROW_MAPPER);
+//		return articleList;
+//	}
+
 	
 	public void insert(Article article) {
 		String sql = "INSERT INTO articles (name, content) VALUES (:name, :content)";
