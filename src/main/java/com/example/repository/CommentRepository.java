@@ -26,7 +26,6 @@ public class CommentRepository {
 		return comment;
 	};
 	
-	
 	public List<Comment> findByArticleId(Integer articleId) {
 		String sql ="SELECT id, name, content, article_id FROM comments WHERE article_id = :articleId";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("articleId", articleId);
