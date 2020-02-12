@@ -9,7 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.Article;
+import com.example.domain.Comment;
 import com.example.form.ArticleForm;
+import com.example.form.CommentForm;
 import com.example.repository.ArticleRepository;
 import com.example.repository.CommentRepository;
 
@@ -20,6 +22,9 @@ public class ArticleController {
 	@Autowired
 	private ArticleRepository articleRepository;
 	
+	@Autowired
+	private CommentRepository commentRepository;
+	
 	@RequestMapping("")
 	public String index(Model model) {
 		List<Article> articleList = articleRepository.findAll();
@@ -27,8 +32,8 @@ public class ArticleController {
 		return "index";
 	}
 	
-	@RequestMapping("receive-form")
-	public String receiveForm(ArticleForm form) {
+	@RequestMapping("insert-article")
+	public String insertArticle(ArticleForm form) {
 		Article article = new Article(); 
 		BeanUtils.copyProperties(form, article);
 		articleRepository.insert(article);
@@ -40,5 +45,14 @@ public class ArticleController {
 	@RequestMapping("/toIndex")
 	public String toIndex(Model model) {
 		return index(model);
+	}
+	
+	@RequestMapping("insert-comment")
+	public String insertComment(CommentForm form) {
+		Comment comment = new Comment();
+		BeanUtils.copyProperties(form, comment);
+		comment.setArticleId(form.getIntArticleId());
+		commentRepository.insert(comment);
+		return "redirect:/article/toIndex";
 	}
 }
