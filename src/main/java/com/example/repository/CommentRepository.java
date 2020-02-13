@@ -39,4 +39,10 @@ public class CommentRepository {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(comment);
 		template.update(sql, param);
 	}
+	
+	public void deleteByArticleId(Integer articleId) {
+		String sql = "DELETE FROM comments WHERE article_id = :articleId";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("articleId", articleId);
+		template.update(sql, param);
+	}
 }

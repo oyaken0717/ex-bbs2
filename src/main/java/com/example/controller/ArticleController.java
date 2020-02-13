@@ -32,7 +32,7 @@ public class ArticleController {
 		return "index";
 	}
 	
-	@RequestMapping("insert-article")
+	@RequestMapping("/insert-article")
 	public String insertArticle(ArticleForm form) {
 		Article article = new Article(); 
 		BeanUtils.copyProperties(form, article);
@@ -47,12 +47,20 @@ public class ArticleController {
 		return index(model);
 	}
 	
-	@RequestMapping("insert-comment")
+	@RequestMapping("/insert-comment")
 	public String insertComment(CommentForm form) {
 		Comment comment = new Comment();
 		BeanUtils.copyProperties(form, comment);
 		comment.setArticleId(form.getIntArticleId());
 		commentRepository.insert(comment);
+		return "redirect:/article/toIndex";
+	}
+	
+	@RequestMapping("/delete-article")
+	public String deleteArticle(Integer articleId) {
+		System.out.println(articleId);
+		commentRepository.deleteByArticleId(articleId);
+		articleRepository.deleteById(articleId);
 		return "redirect:/article/toIndex";
 	}
 }
