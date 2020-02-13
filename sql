@@ -16,3 +16,5 @@ article_id integer NOT NULL, --投稿ID
 
 CONSTRAINT comments_pkey PRIMARY KEY (id),
 FOREIGN KEY (article_id) REFERENCES articles (id)
+
+id name content com_id com_name com_content article_id 

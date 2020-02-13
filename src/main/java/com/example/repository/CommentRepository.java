@@ -33,18 +33,18 @@ public class CommentRepository {
 		return comment;
 	};
 
-	/**
-	 * すべてのコメントの情報を取得する.
-	 * 
-	 * @param articleId 記事のID
-	 * @return 記事に紐づいたコメントの一覧
-	 */
-	public List<Comment> findByArticleId(Integer articleId) {
-		String sql = "SELECT id, name, content, article_id FROM comments WHERE article_id = :articleId ORDER BY id DESC";
-		SqlParameterSource param = new MapSqlParameterSource().addValue("articleId", articleId);
-		List<Comment> commentList = template.query(sql, param, COMMENT_ROW_MAPPER);
-		return commentList;
-	}
+//	/**
+//	 * すべてのコメントの情報を取得する.
+//	 * 
+//	 * @param articleId 記事のID
+//	 * @return 記事に紐づいたコメントの一覧
+//	 */
+//	public List<Comment> findByArticleId(Integer articleId) {
+//		String sql = "SELECT id, name, content, article_id FROM comments WHERE article_id = :articleId ORDER BY id DESC";
+//		SqlParameterSource param = new MapSqlParameterSource().addValue("articleId", articleId);
+//		List<Comment> commentList = template.query(sql, param, COMMENT_ROW_MAPPER);
+//		return commentList;
+//	}
 
 	/**
 	 * 作成したコメントを挿入する.

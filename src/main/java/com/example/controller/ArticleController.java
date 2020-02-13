@@ -40,10 +40,10 @@ public class ArticleController {
 	@RequestMapping("")
 	public String index(Model model) {
 		List<Article> articleList = articleRepository.findAll();
-		for (Article article : articleList) {
-			List<Comment> commentList = commentRepository.findByArticleId(article.getId());
-			article.setCommentList(commentList);
-		}
+//		for (Article article : articleList) {
+//			List<Comment> commentList = commentRepository.findByArticleId(article.getId());
+//			article.setCommentList(commentList);
+//		}
 		model.addAttribute("articleList", articleList);
 		return "index";
 	}
@@ -62,11 +62,6 @@ public class ArticleController {
 		return "redirect:/article";
 	}
 
-//	@RequestMapping("/toIndex")
-//	public String toIndex(Model model) {
-//		return index(model);
-//	}
-	
 	/**
 	 * コメントを作成する.
 	 * 
