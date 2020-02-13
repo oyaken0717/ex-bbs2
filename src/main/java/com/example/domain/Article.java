@@ -7,6 +7,7 @@ public class Article {
 	private Integer id;
 	private String name;
 	private String content;
+//■テーブルのカラムにはないとは、Domainのこと？
 	private List<Comment> commentList;
 	
 	public Integer getId() {

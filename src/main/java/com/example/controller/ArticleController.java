@@ -28,13 +28,17 @@ public class ArticleController {
 	@RequestMapping("")
 	public String index(Model model) {
 		List<Article> articleList = articleRepository.findAll();
-		model.addAttribute("articleList",articleList);
+		for (Article article : articleList) {
+			List<Comment> commentList = commentRepository.findByArticleId(article.getId());
+			article.setCommentList(commentList);
+		}
+		model.addAttribute("articleList", articleList);
 		return "index";
 	}
-	
+
 	@RequestMapping("/insert-article")
 	public String insertArticle(ArticleForm form) {
-		Article article = new Article(); 
+		Article article = new Article();
 		BeanUtils.copyProperties(form, article);
 		articleRepository.insert(article);
 		return "redirect:/article/toIndex";

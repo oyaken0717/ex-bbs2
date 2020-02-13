@@ -17,9 +17,6 @@ import com.example.domain.Comment;
 public class ArticleRepository {
 
 	@Autowired
-	private CommentRepository commentRepository;
-
-	@Autowired
 	private NamedParameterJdbcTemplate template;
 
 	private static final RowMapper<Article> ARTICLE_ROW_MAPPER = (rs, i) -> {
@@ -34,11 +31,6 @@ public class ArticleRepository {
 	public List<Article> findAll() {
 		String sql = "SELECT id, name, content FROM articles ORDER BY id DESC";
 		List<Article> articleList = template.query(sql, ARTICLE_ROW_MAPPER);
-		for (Article article : articleList) {
-			List<Comment> commentList = commentRepository.findByArticleId(article.getId());
-			article.setCommentList(commentList);
-		}
-
 		return articleList;
 	}
 
