@@ -59,7 +59,7 @@ public class ArticleController {
 		Article article = new Article();
 		BeanUtils.copyProperties(form, article);
 		articleRepository.insert(article);
-		return "redirect:/article/toIndex";
+		return "redirect:/article";
 	}
 
 //	@RequestMapping("/toIndex")
@@ -79,7 +79,7 @@ public class ArticleController {
 		BeanUtils.copyProperties(form, comment);
 		comment.setArticleId(form.getIntArticleId());
 		commentRepository.insert(comment);
-		return "redirect:/article/toIndex";
+		return "redirect:/article";
 	}
 	
 	/**
@@ -93,6 +93,6 @@ public class ArticleController {
 		System.out.println(articleId);
 		commentRepository.deleteByArticleId(articleId);
 		articleRepository.deleteById(articleId);
-		return "redirect:/article/toIndex";
+		return "redirect:/article";
 	}
 }
