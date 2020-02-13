@@ -1,5 +1,11 @@
 package com.example.form;
 
+/**
+ * コメントの投稿内容に関するリクエストパラメータを受け取るフォーム.
+ * 
+ * @author oyamadakenji
+ *
+ */
 public class CommentForm {
 
 	private String articleId;

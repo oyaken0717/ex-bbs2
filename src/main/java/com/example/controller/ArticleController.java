@@ -15,6 +15,12 @@ import com.example.form.CommentForm;
 import com.example.repository.ArticleRepository;
 import com.example.repository.CommentRepository;
 
+/**
+ * 記事とコメントの処理を制御するコントローラー.
+ * 
+ * @author oyamadakenji
+ *
+ */
 @Controller
 @RequestMapping("/article")
 public class ArticleController {
@@ -25,6 +31,12 @@ public class ArticleController {
 	@Autowired
 	private CommentRepository commentRepository;
 	
+	/**
+	 * 掲示板画面に遷移する.
+	 * 
+	 * @param model リクエストスコープ
+	 * @return 一覧画面
+	 */
 	@RequestMapping("")
 	public String index(Model model) {
 		List<Article> articleList = articleRepository.findAll();
@@ -36,6 +48,12 @@ public class ArticleController {
 		return "index";
 	}
 
+	/**
+	 * 記事を作成する.
+	 * 
+	 * @param form 記事のリクエストスコープを受け取るフォーム
+	 * @return 掲示板画面
+	 */
 	@RequestMapping("/insert-article")
 	public String insertArticle(ArticleForm form) {
 		Article article = new Article();
@@ -43,14 +61,18 @@ public class ArticleController {
 		articleRepository.insert(article);
 		return "redirect:/article/toIndex";
 	}
-//■質問
-//	receiveForm()でredirectしてますが、
-//	toIndex()の方でModelを引数にしても大丈夫なのかどうか
-	@RequestMapping("/toIndex")
-	public String toIndex(Model model) {
-		return index(model);
-	}
+
+//	@RequestMapping("/toIndex")
+//	public String toIndex(Model model) {
+//		return index(model);
+//	}
 	
+	/**
+	 * コメントを作成する.
+	 * 
+	 * @param form 記事のリクエストスコープを受け取るフォーム
+	 * @return 掲示板画面
+	 */
 	@RequestMapping("/insert-comment")
 	public String insertComment(CommentForm form) {
 		Comment comment = new Comment();
@@ -60,6 +82,12 @@ public class ArticleController {
 		return "redirect:/article/toIndex";
 	}
 	
+	/**
+	 * 記事とコメントを削除する.
+	 * 
+	 * @param articleId 記事のID
+	 * @return 掲示板画面
+	 */
 	@RequestMapping("/delete-article")
 	public String deleteArticle(Integer articleId) {
 		System.out.println(articleId);
